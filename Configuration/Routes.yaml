@@ -15,7 +15,7 @@
 # Default subroutes
 #
 -
-  name: 'In2timetape'
+  name: 'Timetape2Mite'
   uriPattern: '{@controller}/{@action}(.{@format})'
   defaults:
     @package: 'In2code.In2timetape'
@@ -27,7 +27,7 @@
 # Redirect to index action of given controller
 #
 -
-  name: 'In2timetape'
+  name: 'Timetape2Mite'
   uriPattern: '{@controller}'
   defaults:
     @package: 'In2code.In2timetape'
@@ -39,7 +39,7 @@
 # Redirect to default action of default controller
 #
 -
-  name: 'In2timetape'
+  name: 'Timetape2Mite'
   uriPattern: ''
   defaults:
     @package: 'In2code.In2timetape'
