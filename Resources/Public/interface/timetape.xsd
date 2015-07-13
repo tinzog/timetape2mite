@@ -21,6 +21,8 @@
                             <xs:element type="xs:string" name="abteilung"/>
                             <xs:element type="xs:integer" name="standortid"/>
                             <xs:element type="xs:string" name="standort"/>
+                            <xs:element type="xs:string" name="arbeitszeitmodellid"/>
+                            <xs:element type="xs:string" name="arbeitszeitmodell"/>
                             <xs:element type="xs:float" name="jahresurlaub"/>
                             <xs:element name="urlaubsanspruchlist">
                                 <xs:complexType>
