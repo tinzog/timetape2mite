@@ -1,0 +1,57 @@
+<f:layout name="Default"/>
+
+<f:section name="title">Benutzerliste</f:section>
+
+
+<f:section name="main">
+    <f:security.ifAuthenticated>
+        <f:if condition="{accounts}">
+        <f:then>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <th>
+                        Benutzername
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Rolle
+                    </th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                    <f:for each="{accounts}" as="account">
+                        <tr>
+                            <td>
+                                {account.accountidentifier}
+                            </td>
+                            <td>
+                                {account.party.name.fullName}
+                            </td>
+                            <td>
+                            <f:for each="{account.roles}" as="role">
+                                   {role}<br/>
+                            </f:for>
+                            </td>
+                            <td class="text-right">
+                            <f:link.action action="show" controller="Account"
+                            arguments="{account : account}">
+                            <div title="Info" class="btn btn-sm btn-primary"><span
+                            class="glyphicon glyphicon-info-sign"></span></div>
+                            </f:link.action>
+                            </td>
+                        </tr>
+                    </f:for>
+                    </tbody>
+                </table>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning" role="alert">Es sind keine Benutzer registriert.</div>
+        </f:else>
+    </f:if>
+        </f:security.ifAuthenticated>
+    <f:link.action class="btn btn-primary" action="new" controller="Account">Neuen Benutzer anlegen</f:link.action>
+</f:section>

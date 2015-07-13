@@ -1,0 +1,48 @@
+#                                                                        #
+# Routes configuration                                                   #
+#                                                                        #
+# This file contains the configuration for the MVC router.               #
+# Just add your own modifications as necessary.                          #
+#                                                                        #
+# Please refer to the Flow manual for possible configuration options.    #
+#                                                                        #
+
+##
+# Subroutes for the package In2code.In2timetape.
+#
+##
+##
+# Default subroutes
+#
+-
+  name: 'In2timetape'
+  uriPattern: '{@controller}/{@action}(.{@format})'
+  defaults:
+    @package: 'In2code.In2timetape'
+    @controller: 'Entitlement'
+    @action: 'index'
+    @format: 'html'
+
+##
+# Redirect to index action of given controller
+#
+-
+  name: 'In2timetape'
+  uriPattern: '{@controller}'
+  defaults:
+    @package: 'In2code.In2timetape'
+    @controller: 'Entitlement'
+    @action: 'index'
+    @format: 'html'
+
+##
+# Redirect to default action of default controller
+#
+-
+  name: 'In2timetape'
+  uriPattern: ''
+  defaults:
+    @package: 'In2code.In2timetape'
+    @controller: 'Entitlement'
+    @action: 'index'
+    @format: 'html'

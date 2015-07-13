@@ -1,0 +1,42 @@
+<f:layout name="Default"/>
+
+<f:section name="title">
+    <f:security.ifAuthenticated>Mein Benutzerprofil
+</f:security.ifAuthenticated>
+</f:section>
+
+<f:section name="main">
+    <f:security.ifAuthenticated>
+        <f:then>
+        <form name="showAccount" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="identifier">Benutzername</label>
+
+                <p class="form-control-static" id="identifier">{account.accountidentifier}</p>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Vorname</label>
+
+                <p class="form-control-static" id="firstName">{account.party.name.firstName}</p>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nachname</label>
+
+                <p class="form-control-static" id="lastName">{account.party.name.lastName}</p>
+            </div>
+            <div class="form-group">
+                <label for="role">Rolle</label>
+                <f:for each="{account.roles}" as="role">
+                    <p class="form-control-static" id="role">{role}</p>
+                </f:for>
+            </div>
+            <f:link.action class="btn btn-warning" action="resetOwnPassword" controller="Account">Passwort ändern
+            </f:link.action>
+            <f:link.action class="btn btn-primary" action="index" controller="Account">Zurück zur Liste</f:link.action>
+        </form>
+        </f:then>
+        <f:else>
+            <f:link.action action="index" controller="Login">Bitte loggen Sie sich erneut ein</f:link.action>
+        </f:else>
+    </f:security.ifAuthenticated>
+</f:section>

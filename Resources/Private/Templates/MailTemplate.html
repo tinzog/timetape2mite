@@ -1,0 +1,35 @@
+{namespace in2timetape=In2code\In2timetape\ViewHelpers}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Urlaubstage für die Mitarbeiter der in2code GmbH</title>
+</head>
+<body>
+<div>Urlaubstage für die Mitarbeiter der in2code GmbH für das Jahr {year}</div>
+<div>Stand:  {date}</div>
+<br>
+<table border="1">
+    <tr>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Urlaubsanspruch für dieses Jahr</th>
+        <th>Resturlaub vom Vorjahr</th>
+        <th>Im Vorjahr verfallen</th>
+        <th>In diesem Jahr genommene Tage</th>
+        <th>Gesamter Resturlaub</th>
+    </tr>
+    <f:for each="{entitlements}" as="entitlement">
+        <tr>
+            <td>{entitlement.employee.firstName}</td>
+            <td>{entitlement.employee.lastName}</td>
+            <td><f:format.number decimals="1">{entitlement.daysEntitledThisYear}</f:format.number></td>
+            <td><f:format.number decimals="1">{entitlement.remainingDaysFromLastYear}</f:format.number></td>
+            <td><f:format.number decimals="1">{entitlement.daysExpiredFromLastYear}</f:format.number></td>
+            <td><f:format.number decimals="1">{entitlement.daysTakenThisYear}</f:format.number></td>
+            <td><in2timetape:remainingHolidays holidayEntitlement="{entitlement}"/></td>
+
+        </tr>
+    </f:for>
+</table>
+</body>
+</html>

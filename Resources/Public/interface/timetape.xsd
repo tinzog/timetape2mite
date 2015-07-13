@@ -1,0 +1,198 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="mitarbeiterlist">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mitarbeiter" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="mitarbeiterid"/>
+                            <xs:element type="xs:string" name="create"/>
+                            <xs:element type="xs:string" name="update"/>
+                            <xs:element type="xs:string" name="anr"/>
+                            <xs:element type="xs:string" name="vorn"/>
+                            <xs:element type="xs:string" name="nachn"/>
+                            <xs:element type="xs:string" name="emailadresse"/>
+                            <xs:element type="xs:string" name="personalnummer"/>
+                            <xs:element type="xs:string" name="telefonnummer"/>
+                            <xs:element type="xs:string" name="eintritt"/>
+                            <xs:element type="xs:string" name="austritt"/>
+                            <xs:element type="xs:integer" name="abteilungid"/>
+                            <xs:element type="xs:string" name="abteilung"/>
+                            <xs:element type="xs:integer" name="standortid"/>
+                            <xs:element type="xs:string" name="standort"/>
+                            <xs:element type="xs:float" name="jahresurlaub"/>
+                            <xs:element name="urlaubsanspruchlist">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="urlaubsanspruch" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:short" name="jahr"/>
+                                                    <xs:element type="xs:float" name="urlaubsanspruchtage"/>
+                                                    <xs:element type="xs:float" name="restvorjahrtage"/>
+                                                    <xs:element type="xs:float" name="restvorjahrtageverfallen"/>
+                                                    <xs:element type="xs:float" name="urlaubgenommentage"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:short" name="jahr" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="urlaubsantraegelist">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="urlaubsantrag" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="urlaubsantragid"/>
+                                                    <xs:element type="xs:string" name="create"/>
+                                                    <xs:element type="xs:string" name="update"/>
+                                                    <xs:element type="xs:integer" name="urlaubstatus"/>
+                                                    <xs:element type="xs:string" name="urlaubvon"/>
+                                                    <xs:element type="xs:string" name="urlaubbis"/>
+                                                    <xs:element type="xs:integer" name="halbertag"/>
+                                                    <xs:element type="xs:integer" name="istsonderurlaub"/>
+                                                    <xs:element type="xs:string" name="vertretungmitarbeiterid"/>
+                                                    <xs:element type="xs:float" name="urlaubstage"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:integer" name="urlaubsantragid" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="krankheitstagelist">
+                                <xs:complexType mixed="true">
+                                    <xs:sequence>
+                                        <xs:element name="krankheit" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="krankheitid"/>
+                                                    <xs:element type="xs:string" name="create"/>
+                                                    <xs:element type="xs:string" name="update"/>
+                                                    <xs:element type="xs:integer" name="krankheittyp"/>
+                                                    <xs:element type="xs:integer" name="krankheitstatus"/>
+                                                    <xs:element type="xs:string" name="krankheitvon"/>
+                                                    <xs:element type="xs:string" name="krankheitbis"/>
+                                                    <xs:element type="xs:integer" name="halbertag"/>
+                                                    <xs:element type="xs:float" name="krankheittage"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:integer" name="krankheitid" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="abwesenheitenlist">
+                                <xs:complexType mixed="true">
+                                    <xs:sequence>
+                                        <xs:element name="abwesenheit" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="abwesenheitid"/>
+                                                    <xs:element type="xs:string" name="create"/>
+                                                    <xs:element type="xs:string" name="update"/>
+                                                    <xs:element type="xs:short" name="abwesenheittyp"/>
+                                                    <xs:element type="xs:integer" name="abwesenheitstatus"/>
+                                                    <xs:element type="xs:string" name="abwesendvon"/>
+                                                    <xs:element type="xs:string" name="abwesendbis"/>
+                                                    <xs:element type="xs:integer" name="halbertag"/>
+                                                    <xs:element type="xs:float" name="abwesendtage"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:integer" name="abwesenheitid" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="tagelist">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="tag" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:date" name="datum"/>
+                                                    <xs:element name="zeitenlist">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="zeit" maxOccurs="unbounded" minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element type="xs:time" name="zeitvon"/>
+                                                                            <xs:element type="xs:time" name="zeitbis"/>
+                                                                            <xs:element name="typ">
+                                                                                <xs:simpleType>
+                                                                                    <!-- define a set of xsd:strings as possible values -->
+                                                                                    <xs:restriction base="xs:string">
+                                                                                        <xs:enumeration value="URLAUB"/>
+                                                                                        <xs:enumeration
+                                                                                                value="URLAUB_HALB_1"/>
+                                                                                        <xs:enumeration
+                                                                                                value="URLAUB_HALB_2"/>
+                                                                                        <xs:enumeration
+                                                                                                value="KEINWERKTAG"/>
+                                                                                        <xs:enumeration
+                                                                                                value="FEIERTAG"/>
+                                                                                        <xs:enumeration
+                                                                                                value="FEIERTAG_HALB_1"/>
+                                                                                        <xs:enumeration
+                                                                                                value="FEIERTAG_HALB_2"/>
+                                                                                        <xs:enumeration
+                                                                                                value="FREIERTAG"/>
+                                                                                        <xs:enumeration
+                                                                                                value="FREIERTAG_HALB_1"/>
+                                                                                        <xs:enumeration
+                                                                                                value="FREIERTAG_HALB_2"/>
+                                                                                        <xs:enumeration
+                                                                                                value="SONDERURLAUB"/>
+                                                                                        <xs:enumeration
+                                                                                                value="SONDERURLAUB_HALB_1"/>
+                                                                                        <xs:enumeration
+                                                                                                value="SONDERURLAUB_HALB_2"/>
+                                                                                        <xs:enumeration
+                                                                                                value="ABWESENHEIT"/>
+                                                                                        <xs:enumeration
+                                                                                                value="ABWESENHEIT_HALB_1"/>
+                                                                                        <xs:enumeration
+                                                                                                value="ABWESENHEIT_HALB_2"/>
+                                                                                        <xs:enumeration
+                                                                                                value="KRANKHEIT"/>
+                                                                                        <xs:enumeration
+                                                                                                value="KRANKHEIT_HALB_1"/>
+                                                                                        <xs:enumeration
+                                                                                                value="KRANKHEIT_HALB_2"/>
+                                                                                        <xs:enumeration
+                                                                                                value="VERTRETUNG"/>
+                                                                                        <xs:enumeration
+                                                                                                value="VERTRETUNG_HALB_1"/>
+                                                                                        <xs:enumeration
+                                                                                                value="VERTRETUNG_HALB2"/>
+                                                                                    </xs:restriction>
+                                                                                </xs:simpleType>
+                                                                            </xs:element>
+                                                                            <xs:element type="xs:string" name="subtyp"/>
+                                                                        </xs:sequence>
+                                                                        <xs:attribute type="xs:time" name="zeitvon" use="optional"/>
+                                                                        <xs:attribute type="xs:time" name="zeitbis" use="optional"/>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:date" name="datum" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:integer" name="mitarbeiterid" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

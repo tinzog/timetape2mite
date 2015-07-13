@@ -1,0 +1,63 @@
+{namespace in2timetape=In2code\In2timetape\ViewHelpers}
+<f:layout name="Default"/>
+
+<f:section name="title">
+    <f:security.ifAuthenticated>
+        Urlaubsanträge
+    </f:security.ifAuthenticated>
+</f:section>
+
+<f:section name="main">
+    <f:security.ifAuthenticated>
+        <f:then>
+            <f:if condition="{requests}">
+                <f:then>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr class="row1">
+                                <th>Name</th>
+                                <th>Anfangsdatum</th>
+                                <th>Enddatum</th>
+                                <th>Tage</th>
+                                <th>Vertreter</th>
+                                <th>Status</th>
+                                <th>Timetape-Id</th>
+                            </tr>
+                            <f:for each="{requests}" as="request">
+                                <tr>
+                                    <td class="column-medium">{request.employee.firstName} {request.employee.lastName}
+                                    </td>
+                                    <td class="column-small">
+                                        <f:format.date format="d.m.Y">{request.startDate}</f:format.date>
+                                    </td>
+                                    <td class="column-small">
+                                        <f:format.date format="d.m.Y">{request.endDate}</f:format.date>
+                                    </td>
+                                    <td class="column-small">
+                                        <f:format.number decimals="1">{request.numberOfDays}</f:format.number>
+                                    </td>
+                                    <td class="column-medium">{request.replacement}</td>
+                                    <td class="column-small">
+                                        <in2timetape:requestStatus status="{request.status}"/>
+                                    </td>
+                                    <td class="column-small">
+                                        <f:link.external
+                                                uri="https://tool.timetape.de/de/antraege/antrag.html?urlaub={request.requestId}">
+                                            {request.requestId}
+                                        </f:link.external>
+                                    </td>
+                                </tr>
+                            </f:for>
+                        </table>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-warning" role="alert">Es wurden keine Urlaubsanträge gefunden.</div>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <f:link.action action="index" controller="Login">Bitte loggen Sie sich erneut ein</f:link.action>
+        </f:else>
+    </f:security.ifAuthenticated>
+</f:section>

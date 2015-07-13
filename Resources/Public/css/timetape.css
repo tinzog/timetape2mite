@@ -1,0 +1,55 @@
+/*
+* Main
+*/
+
+body {
+    padding-top: 40px;
+}
+
+
+/*
+ * Table
+ */
+
+th, td, tr, table {
+    border-collapse:collapse;
+    text-align:right;
+    table-layout: auto;
+}
+ .row1 {
+     word-wrap: break-word;
+     background-color: #ebebeb;
+
+}
+
+.column-small {
+    width: 60px;
+}
+
+.column-medium {
+    width: 90px;
+}
+
+.column-large {
+    width: 120px;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+}

@@ -1,0 +1,61 @@
+{namespace in2timetape=In2code\In2timetape\ViewHelpers}
+<f:layout name="Default"/>
+
+<f:section name="title">
+    <f:security.ifAuthenticated>
+        Urlaubsansprüche
+    </f:security.ifAuthenticated>
+</f:section>
+
+<f:section name="main">
+    <f:security.ifAuthenticated>
+        <f:then>
+            <f:if condition="{entitlements}">
+                <f:then>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr class="row1">
+                                <th class="column-medium">Name</th>
+                                <th class="column-medium">Gesamter Resturlaub</th>
+                                <th class="column-medium">Urlaubsanspruch für dieses Jahr</th>
+                                <th class="column-medium">Resturlaub vom Vorjahr</th>
+                                <th class="column-medium">Im Vorjahr verfallen</th>
+                                <th class="column-medium">In diesem Jahr genommene Tage</th>
+                            </tr>
+                            <f:for each="{entitlements}" as="entitlement">
+                                <tr>
+                                    <td>{entitlement.employee.firstName} {entitlement.employee.lastName}</td>
+                                    <td>
+                                        <in2timetape:remainingHolidays holidayEntitlement="{entitlement}"/>
+                                    </td>
+                                    <td>
+                                        <f:format.number decimals="1">{entitlement.daysEntitledThisYear}
+                                        </f:format.number>
+                                    </td>
+                                    <td>
+                                        <f:format.number decimals="1">{entitlement.remainingDaysFromLastYear}
+                                        </f:format.number>
+                                    </td>
+                                    <td>
+                                        <f:format.number decimals="1">{entitlement.daysExpiredFromLastYear}
+                                        </f:format.number>
+                                    </td>
+                                    <td>
+                                        <f:format.number decimals="1">{entitlement.daysTakenThisYear}</f:format.number>
+                                    </td>
+                                </tr>
+                            </f:for>
+                        </table>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-warning" role="alert">Es wurden keine Einträge gefunden.</div>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <f:link.action action="index" controller="Login">Bitte loggen Sie sich erneut ein</f:link.action>
+        </f:else>
+    </f:security.ifAuthenticated>
+</f:section>
+

@@ -1,0 +1,65 @@
+{namespace in2timetape=In2code\In2timetape\ViewHelpers}
+<html>
+
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>In2timetape &#x007C;
+        <f:render section="title"/>
+    </title>
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/bootstrap.css')}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/timetape.css')}"/>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="{f:uri.resource(path: 'js/jquery-1.11.1.min.js')}" type="application/javascript"></script>
+    <script src="{f:uri.resource(path: 'js/parsley.js')}" type="application/javascript"></script>
+    <script src="{f:uri.resource(path: 'js/bootstrap.js')}" type="application/javascript"></script>
+    <script src="{f:uri.resource(path: 'js/timetape.js')}" type="application/javascript"></script>
+    <f:base/>
+</head>
+<body>
+<nav id="mainNavigation" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">In2timetape</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <f:security.ifAuthenticated>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <f:link.action action="index" controller="Entitlement">Urlaubsansprüche</f:link.action>
+                    </li>
+                    <li>
+                        <f:link.action action="index" controller="Request">Urlaubsanträge</f:link.action>
+                    </li>
+                    <li>
+                        <f:link.action action="index" controller="Account">Benutzer</f:link.action>
+                    </li>
+                    <li>
+                        <f:link.action action="showownaccount" controller="Account"><span
+                                class="glyphicon glyphicon-user"></span>
+                            <in2timetape:account/>
+                        </f:link.action>
+                    </li>
+                    <li>
+                        <f:link.action action="logout" controller="Login">Ausloggen</f:link.action>
+                    </li>
+                </ul>
+            </f:security.ifAuthenticated>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+            <h1 class="page-header">
+                <f:render section="title"/>
+            </h1>
+            <f:render partial="FlashMessages"/>
+            <f:render section="main"/>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

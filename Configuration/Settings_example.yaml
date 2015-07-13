@@ -1,0 +1,70 @@
+#In2code Settings
+TYPO3:
+#Einstellungen für den Mailversand. Nur benötigt, wenn eine der Optionen unter [mail][send*mail] aktiviert ist
+  SwiftMailer:
+    transport:
+      type: 'Swift_SmtpTransport'
+      arguments: ~
+      options:
+        host: '' 				# Host z.B. smtp.myProvider.de
+        port: ''				# Port z.B. 587
+        encryption: ''          # z.B. tls, ssl
+        username: ''			# yourUsername
+        password: ''			# yourPassword
+In2code:
+  In2timetape:
+    timetape:
+      api: '' #API-Key z.B.  https://api.timetape.de/de/export/mitarbeiter.xml?apikey=1234567
+
+# Pfad zur Schemadatei, mit der das Timetape-XML validiert wird
+      pathToTimetapeXsd: 'Packages/Application/In2code.In2timetape/Resources/Public/interface/timetape.xsd'	# Pfad ggf. anpassen
+    mite:
+      url: ''					# Hier wird ddas Präfix der Mite-URL, z.B. für in2code.mite.yo.lk "in2code" eingetragen
+      apiKey: ''				# API-Key von Mite (Administrator)
+# Dieser User Agent wird beim Übertrag der Zeiten nach Mite mit eingetragen
+      userAgent: ''             # z.B. In2timetape-System
+# Diese Projekt- und Service-IDs werden den in Mite-angelegten Projekten/Services entnommen
+      urlaubProjectId: ''				# IDs anpassen
+      feiertagProjectId: ''
+      abwesenheitServiceId: ''
+# Diese Kommentare werden beim Eintrag in Mite mit angegeben - Wichtig: nicht leer lassen und nicht mehr nachträglich ändern!
+# Diese Kommentare werden zur Identifikation von Einträgen durch in2timetape verwendet
+      noteUrlaub: 'Urlaub aus Timetape'
+      noteFeiertag: 'Feiertag aus Timetape'
+      noteFreiertag: 'Freier Tag aus Timetape'
+# Durch dieses Flag können die Einträge in Mite als "locked" gesetzt werden
+      lockTimeEntries: 1
+# Durch dieses Flags kann ausgewählt werden, ob die Urlaube, Feiertage bzw. freien Tage nach Mite geschrieben werden sollen
+      writeUrlaubEntries: 1
+      writeFeiertagEntries: 1
+      writeFreiertagEntries: 1
+# Mail-Einstellungen für Sender- und Empfänger-Adressen und Namen	  
+    mail:
+      recipientMail: '' # email-Adresse des Empfängers
+      recipientName: '' # Name des Empfängers
+      senderMail: ''    # email-Adresse des Senders
+      senderName: ''    # Name des Senders
+      accountantMail: '' # email-Adresse des Empfängers der Buchhaltungs-Berichte
+      accountantName: '' # Name des Empfängers der Buchhaltungs-Berichte
+      ccRecipientMail: '' # email-Adresse eines CC-Empfängers für alle Mails
+      ccRecipientName: '' # Name des CC-Empfängers für alle Mails
+
+# Durch diese Flags kann ausgewählt werden, ob Mails verschickt werden sollen:
+# [sendNoEntryMail] Bei erfolgreichem Durchlauf des CronJobs ohne neuen Eintrag
+# [sendNewEntryMail] Beim Erstellen mindestens eines neuen Eintrags
+# [sendErrorMails] Im Fehlerfall
+# [sendSavedMail] Nach erfolgreicher Datensicherung / -aktualisierung
+      sendNoEntryMail: 1
+      sendNewEntryMail: 1
+      sendErrorMails: 1
+      sendSavedMail: 1
+# Pfad für das Email-Template für die Mail an die Buchhaltung
+      emailTemplate:  'Packages/Application/In2code.In2timetape/Resources/Private/Templates/MailTemplate.html'  # ggf. anpassen
+#     Dieser "Betreff" wird beim Versand der Mails mit angezeigt, kann nach Belieben verändert werden
+      errorsSubject: 'Fehler bei Timetape2Mite'
+      newEntriesSubject: 'Neue Einträge in Mite'
+      noEntriesSubject: 'Keine Einträge in Mite'
+      noEntriesMessage: 'Für den heutigen Tag liegen keine Einträge in Timetape vor'
+      savedDataMessage: 'Die Datensicherung wurde erfolgreich durchgeführt'
+      savedDataSubject: 'Datensicherung erfolgreich'
+      accountantMailSubject: 'Zusammenfassung der Urlaubsansprüche'

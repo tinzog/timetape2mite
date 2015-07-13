@@ -1,0 +1,13 @@
+resources:
+  methods:
+    In2code_In2timetape_AccountControllerMethods: 'method(In2code\In2timetape\Controller\AccountController->.*())'
+    In2code_In2timetape_RequestControllerMethods: 'method(In2code\In2timetape\Controller\RequestController->.*())'
+    In2code_In2timetape_EntitlementControllerMethods: 'method(In2code\In2timetape\Controller\EntitlementController->.*())'
+roles:
+  Administrator: []
+acls:
+  Administrator:
+    methods:
+      In2code_In2timetape_AccountControllerMethods: GRANT
+      In2code_In2timetape_RequestControllerMethods: GRANT
+      In2code_In2timetape_EntitlementControllerMethods: GRANT
